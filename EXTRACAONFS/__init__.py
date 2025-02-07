@@ -1,14 +1,14 @@
 # ========== IMPORTAÇÕES ==========
 from flask import Flask  # Flask
-
-# Configurações de ambiente
-from app_config import Config
+from app_config import Config # Configurações de ambiente
 
 
 # ========== APP ==========
 def criacao_app():
+    
     # Configura a pasta static para importações como CSS e JS
     app = Flask(__name__, static_folder='./static')
+    
     # Configuração do app
     app.config.from_object(Config)
 

@@ -4,15 +4,17 @@ import os
 # Carrega variáveis de ambiente do arquivo .env
 load_dotenv()
 
+
+# Classe de configuração do app
 class Config:
-    """Classe de configuração do aplicativo."""
     
-    BASE_DIR = os.path.abspath(os.path.dirname(__file__))  # Diretório base do projeto
+    # Diretório base do projeto
+    BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 
     # Chave secreta para segurança da aplicação
     SECRET_KEY = os.getenv('SECRET_KEY')
 
-    # Diretórios de upload e saída
+    # Diretórios de upload e output
     UPLOAD_FOLDER = os.path.join(BASE_DIR, 'uploads')
     OUTPUT_FOLDER = os.path.join(BASE_DIR, 'outputs')
 
@@ -21,10 +23,9 @@ class Config:
     os.makedirs(OUTPUT_FOLDER, exist_ok=True)
 
     @staticmethod
+    # Verifica a presença da variável de ambiente.
     def validacao_config():
-        """Verifica a presença de variáveis críticas de ambiente."""
         if not Config.SECRET_KEY:
             raise ValueError("A variável de ambiente 'SECRET_KEY' não está definida.")
 
-# Validação da configuração ao carregar
 Config.validacao_config()
