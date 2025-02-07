@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Upload de PDF - Conferência NFs Frotas</title>
+</head>
+<body>
+
+    <header>
+        <nav aria-label="Navegação principal">
+            <img src="{{ url_for('static', filename='img/logoBrasif.png') }}" alt="Logo da Brasif">
+            <h1>Conferência NFs Frotas</h1>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h2>Upload de Arquivo PDF</h2>
+
+            <!-- Seção para exibir mensagens flash -->
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }}">{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+
+            <form action="/upload" method="post" enctype="multipart/form-data">
+                <label for="file">Selecione um arquivo PDF:</label>
+                <input type="file" id="file" name="file" accept=".pdf" required>
+                <button type="submit">Enviar</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Conferência NFs Frotas. Todos os direitos reservados.</p>
+    </footer>
+
+</body>
+</html>

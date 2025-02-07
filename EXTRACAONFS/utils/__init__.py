@@ -1,0 +1,1 @@
+from .extracao_dados_utils import extrai_dados_nf
